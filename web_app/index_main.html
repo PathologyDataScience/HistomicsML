@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<!--
+	Copyright (c) 2014-2017, Emory University
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without modification, are
+	permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this list of
+	conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice, this list
+ 	of conditions and the following disclaimer in the documentation and/or other materials
+	provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+	EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+	OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+	SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+	TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+	BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+	WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+	DAMAGE.
+
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HistomicsML - Interactive machine-learning for histology images</title>
+
+  <script src="js/jquery-1.9.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+</head>
+
+<body>
+  <div style="background:transparent !important" class="jumbotron vertical-center">
+    <div class="container">
+      <h1>HistomicsML</h1>
+      <p>Interactive machine-learning for histology images.</p>
+    </div>
+  </div>
+
+  <div class="container">
+        <div class="row">
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail">
+              <a href="index_home.html?application=region" id="region">
+                <img src="images/demo_region.png"></img>
+                <div class="caption">
+                  <h3>Region</h3>
+                    <p>Region based active learning with convolutional autoencoders.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail">
+              <a href="index_home.html?application=cell" id="cell">
+                <img src="images/demo_cell.png"></img>
+                <div class="caption">
+                  <h3>Nuclei</h3>
+                    <p>Cell based active learning with convolutional autoencoders.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail">
+              <a href="index_home.html?application=nuclei" id="nuclei">
+                <img src="images/demo_nuclei.png"></img>
+                <div class="caption">
+                  <h3>Nuclei (segmentation)</h3>
+                    <p>Cell based active learning using traditional nuclear segmentation and feature extraction.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+      <div class="container">
+        <h4><b>Resources</b></br></br>
+          Paper: <a href="http://www.biorxiv.org/content/early/2017/05/19/140236">
+          M Nalisnik et al, "Interactive phenotyping of large-scale histology imaging data with HistomicsML"</a>,
+          doi: <a href="https://doi.org/10.1101/140236"> https://doi.org/10.1101/140236 </a></br>
+        Source code: <a href="https://github.com/cooperlab/ActiveLearning"> https://github.com/cooperlab/ActiveLearning</a></h4>
+      </div>
+
+
+  </body>
+</html>

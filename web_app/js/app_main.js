@@ -28,7 +28,7 @@ var uid = "";
 var classifier = "";
 var negClass = "";
 var posClass = "";
-var application = "";
+var application = "nuclei";
 var strlink = "";
 
 
