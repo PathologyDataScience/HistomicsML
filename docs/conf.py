@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # HistomicsML documentation build configuration file, created by
-# sphinx-quickstart on Tue Aug 15 12:57:28 2017.
+# sphinx-quickstart on Mon Aug 14 23:50:27 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -16,10 +16,16 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
+import os
+import sys
 # sys.path.insert(0, os.path.abspath('.'))
+# on_rtd is whether we are on readthedocs.org
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- General configuration ------------------------------------------------
 
@@ -46,8 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'HistomicsML'
-copyright = u'2017, CancerDataScience'
-author = u'CancerDataScience'
+copyright = u'2017, Sanghoon Lee'
+author = u'Sanghoon Lee'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -82,7 +88,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -127,7 +133,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'HistomicsML.tex', u'HistomicsML Documentation',
-     u'CancerDataScience', 'manual'),
+     u'Sanghoon Lee', 'manual'),
 ]
 
 
@@ -151,6 +157,3 @@ texinfo_documents = [
      author, 'HistomicsML', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-
