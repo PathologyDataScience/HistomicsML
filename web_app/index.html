@@ -27,79 +27,168 @@
 
 -->
 
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>HistomicsML - Interactive machine-learning for histology images</title>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="js/jquery-1.9.0.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+		<title>HistomicsML - Interactive machine-learning for histology images</title>
 
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 
-</head>
-
-<body>
-  <div style="background:transparent !important" class="jumbotron vertical-center">
-    <div class="container">
-      <h1>HistomicsML</h1>
-      <p>Interactive machine-learning for histology images.</p>
-    </div>
-  </div>
-
-  <div class="container">
-        <div class="row">
-
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="thumbnail">
-              <a href="index_home.html?application=region" id="region">
-                <img src="images/demo_region.png"></img>
-                <div class="caption">
-                  <h3>Region</h3>
-                    <p>Region based active learning with convolutional autoencoders.</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="thumbnail">
-              <a href="index_home.html?application=cell" id="cell">
-                <img src="images/demo_cell.png"></img>
-                <div class="caption">
-                  <h3>Nuclei</h3>
-                    <p>Cell based active learning with convolutional autoencoders.</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="thumbnail">
-              <a href="index_home.html?application=nuclei" id="nuclei">
-                <img src="images/demo_nuclei.png"></img>
-                <div class="caption">
-                  <h3>Nuclei (segmentation)</h3>
-                    <p>Cell based active learning using traditional nuclear segmentation and feature extraction.</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-      </div>
-    </div>
-
-      <div class="container">
-        <h4><b>Resources</b></br></br>
-          Paper: <a href="http://www.biorxiv.org/content/early/2017/05/19/140236">
-          M Nalisnik et al, "Interactive phenotyping of large-scale histology imaging data with HistomicsML"</a>,
-          doi: <a href="https://doi.org/10.1101/140236"> https://doi.org/10.1101/140236 </a></br>
-        Source code: <a href="https://github.com/cooperlab/ActiveLearning"> https://github.com/cooperlab/ActiveLearning</a></h4>
-      </div>
+		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	</head>
 
 
-  </body>
+	<body>
+
+		<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<div><ul class="nav navbar-nav"><li><a href="index.html" id="index">HistomicsML</a></li><ul></div>
+				</div>
+
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="grid.html" id="nav_select">Instance</a></li>
+						<li><a href="viewer.html" id ="viewer">Heatmap</a></li>
+						<li><a href="heatmaps.html" id="nav_heatmaps">Gallery</a></li>
+						<li><a href="review.html" id="nav_review">Review</a></li>
+						<li><a href="data.html" id="nav_data">Import</a></li>
+						<li><a href="reports.html" id="nav_reports">Reports</a></li>
+						<li><a href="validation.html" id="nav_validation">Validation</a></li>
+					</ul>
+				</div>
+		</nav>
+
+		<div class="container">
+		    <div class="row">
+		    	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			    	<center><img src="images/banner.png" class="img-responsive"></center>
+ 				</div>
+			</div>
+
+			<br />
+
+			<div class="row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h2>Start a session</h2>
+				</div>
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h2>Continue a session</h2>
+				</div>
+
+			</div>
+
+			<br />
+
+			<div class="row">
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="classifier_form" method="POST" action="php/initSession.php" onsubmit=displayProg()>
+
+						<input type="hidden" class="form-control" id="applicationSel"
+								name="application" readonly="readonly">
+						<div class="form-group">
+							<label for="trainset">Training Set Name</label>
+							<input type="text" class="form-control" id="trainset"
+									name="classifiername" placeholder="Enter classifier name">
+						</div>
+						<div class="form-group">
+							<label for="datasetSel">Dataset</label>
+							<select class="form-control" id="datasetSel" name="dataset">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="posClass">Positive class</label>
+							<input type="text" class="form-control" id="posClass"
+									name="posName" placeholder="Enter positive class name">
+						</div>
+
+						<div class="form-group">
+							<label for="negClass">Negative class</label>
+							<input type="text" class="form-control" id="negClass"
+									name="negName" placeholder="Enter negative class name">
+						</div>
+
+						<button id="beginSession" type="submit" name="submit" class="btn btn-default" value="submitted" >Begin</button>
+					</form>
+				</div>
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="reload_form" method="POST" action="php/reloadSession.php" onsubmit=displayProg()>
+						<input type="hidden" class="form-control" id="applicationSelreload"
+								name="applicationreload" readonly="readonly">
+						<div class="form-group">
+							<label for="reloadDatasetSel">Dataset</label>
+							<select class="form-control" id="reloadDatasetSel" name="reloadDataset">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="reloadTrainSetSel">Training Set</label>
+							<select class="form-control" id="reloadTrainSetSel" name="trainingset">
+							</select>
+							<br/>
+							<div>
+								<span><strong>Pos class:</strong></span>
+								<span id="reloadPos">Pos</span>
+								<br/>
+								<span><strong>Count:</strong></span>
+								<span id="reloadPosCount">0</span>
+								<br/>
+								<span><strong>Neg class:</strong></span>
+								<span id="reloadNeg">Neg</span>
+								<br/>
+								<span><strong>Count:</strong></span>
+								<span id="reloadNegCount">0</span>
+								<br/>
+								<span><strong>Iterations:</strong></span>
+								<span id="reloadIter">0</span>
+							</div>
+						</div>
+
+						<button id="reloadSession" type="submit" name="continue" class="btn btn-default" value="submitted" >Continue</button>
+					</form>
+				</div>
+
+			</div>
+
+
+			<div class="row top-buffer"></div>   <!-- A little space between -->
+
+			<div class="row">
+				<input type="button" id="resetBtn" value="Reset Session" class="btn btn-danger" onClick="resetAlServer()">
+			</div>
+		</div>
+
+		<div class="modal fade" id="progDiag" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">
+							Loading Dataset
+						</h4>
+					</div>
+					<div class="modal-body">
+						Please wait while the dataset is loaded
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/app_main.js"></script>
+	</body>
 </html>
