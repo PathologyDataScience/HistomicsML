@@ -54,7 +54,7 @@
 
 	if( file_exists($trainSet) && file_exists($dataSet) ) {
 
-		$cmd = 'validate_d -t '.$trainSet.' -f '.$dataSet.' -m map -s '.$slide.' -o '.$outFile;
+		$cmd = 'validate -t '.$trainSet.' -f '.$dataSet.' -m map -s '.$slide.' -o '.$outFile;
 		write_log("INFO","Executing: ".$cmd);
 
 		exec($cmd, $output, $resultVal);
