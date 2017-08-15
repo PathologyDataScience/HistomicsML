@@ -28,7 +28,7 @@ var uid = "";
 var classifier = "";
 var negClass = "";
 var posClass = "";
-var application = "nuclei";
+var application = "";
 var strlink = "";
 
 
@@ -38,7 +38,8 @@ var strlink = "";
 //
 $(function() {
 
-	application = $_GET("application");
+	//application = $_GET("application");
+	application = "nuclei";
 
 	var	datasetSel = $("#datasetSel");
 
