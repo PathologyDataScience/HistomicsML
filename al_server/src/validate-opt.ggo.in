@@ -1,0 +1,11 @@
+package "validate"
+version "@AL_SERVER_VERSION_MAJOR@.@AL_SERVER_VERSION_MINOR@"
+
+description "HistomicsML validation tool"
+
+option "test-file"		f	"File containing test data" string required
+option "train-file"		t	"File containing training data" string required
+option "output-file"	o	"File name for output" string required
+option "command"		m	"Test to apply" values="roc","count","apply","map" required
+option "classifier"		c	"Classifier to use" values="svm","randForest" default="randForest" optional
+option "slide"			s	"Slide to process map for" string optional

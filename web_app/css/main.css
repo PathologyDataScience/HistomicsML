@@ -1,0 +1,151 @@
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+    
+}
+.v-center {
+  min-height:10px;
+  display: flex;
+  justify-content:center;
+  flex-flow: column wrap;
+padding-top: 10px;
+    padding-bottom: 10px;
+}
+.list-group {
+    border: 1px inset #eee;
+    height: 200px;
+    overflow-y: auto;
+}
+.list-group-item {
+    cursor: pointer;
+}
+
+/*for Testonly*/
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #111111;
+	font-size: 14px;
+}
+
+
+.axis path, .axis line{
+	stroke: black;
+	fill: none;
+	shape-rendering: crispEdges;
+}
+
+.axis text{
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+.survline{
+	fill: none;
+	stroke-width: 2;
+	stroke: rgba(0, 0, 255, 1);
+	shape-rendering: crispEdges;
+}
+.survline.active{
+	stroke: rgba(255, 0, 0, 1);
+	z-index: 100;
+}
+
+.survarea{
+	stroke-width: 0;
+	fill: rgba(0, 0, 255, 0.2);
+}
+.survarea.active{
+	fill: rgba(255, 0, 0, 0.4);
+}
+
+.survcircle{
+	fill: rgba(0, 0, 255, 1);
+	stroke: rgba(0, 0, 255, 1);
+}
+.survcircle.active{
+	fill: rgba(255, 0, 0, 1);
+	stroke: rgba(255, 0, 0, 1);
+}
+
+/* UI Stuff */
+
+#message-holder{
+	height: 30px;
+}
+#message{
+	width: 540px;
+	padding: 5px;
+	font-weight: 300;
+}
+#message.active{
+	border: 1px solid rgba(255, 0, 0, 1);
+	border-radius: 5px;
+	background-color: rgba(255, 0, 0, 0.4);
+}
+.legend{
+	font-weight:300;
+}
+#inputs-container-container{
+	float: left;
+	width: 520px;
+	border: 1px solid #A9A9A9;
+	border-radius: 25px;
+	padding: 15px;
+	margin-top: 5px;
+}
+.input-container{
+	float: left;
+	margin: 11px;
+	text-align: left;
+}
+textarea{
+	resize: auto;
+	border: 1px solid #A9A9A9;
+}
+#timesdata, #groupdata, #censoringdata{
+	background-color: #FFF;
+
+}
+#eventSel, #timeSel {
+
+}
+#instructions{
+	float: left;
+	width: 500px;
+}
+button{
+	cursor: pointer;
+	cursor: hand;
+}
+table {
+    border-spacing : 5px;
+     position:relative;
+  
+    left: 100px;
+    right : 100px;
+}
+th,td {
+    padding : 5px;
+    border-spacing: 0px;
+    font-size: 90%;
+    margin :auto;
+}
+th,td{
+    text-align: left;
+    border-top : 1px solid #999;
+    border-bottom : 2px solid #999;
+    border-right :1px solid #999;
+    border-left :1px solid #999;
+}
+th {
+    font-size: 90%;
+  
+    text-align : left;
+}
+tr.even {
+    background-color: #acacac;
+}
+tr:hover {
+    background-color: #acacac;
+}
+

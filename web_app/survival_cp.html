@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+				<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+				<meta content="utf-8" http-equiv="encoding">
+        <title>Survival Graph</title>
+        <script src="js/jquery-1.9.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/d3.v3.min.js" charset="utf-8"></script>
+        <script src="js/array-utils.js" charset="utf-8"></script>
+        <script src="js/kaplan-meier.js" charset="utf-8"></script>
+        <link rel="stylesheet" media="screen" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" media="screen" href="css/style.css"/>
+				<link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/forTestonly.css"/>
+        <script src="js/jquery.csv.js"></script>
+        <link rel="stylesheet" href="css/forTestonly.css"/>
+	</head>
+	<body>
+		<!-- Navigation bar  -->
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<div class="navbar-brand">HistomicsML</div>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="grid.html" id="nav_select">Select</a></li>
+					<li><a href="review.html">Review</a></li>
+					<li><a href="viewer.html">Viewer</a></li>
+					<li><a href="heatmaps.html">Heatmaps</a></li>
+          <li class="active"><a href="survival.html" id="nav_survival" >Survival</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="row">
+			<div class="col-sm-4">
+				    <div class="well">
+							<p>Upload your data in a CSV file:</p>
+<!--
+							<ol>Please replace the 'time' and 'event' variables with the appropriate column names "time" and "event"in Your dataset (case sensive).</ol>
+							<ol>Please include the column names to make model specification clear.</ol>
+							<ol>Acceptable Event flags: 1 for event, 0 for censoring.
+								Groups need not be supplied.</ol>
+-->
+						<br>
+						<div id="inputs" class="clearfix">
+						 <input type="file" id="files" name="files[]" multiple="">
+						</div>
+                    <div class="row pick-list">
+					<div class="col-xs-12">
+						<ul class="list-group source" id ="list"></ul>
+					</div>
+<!--					<div class="col-xs-12 v-center">-->
+						<button title="Send to list 2" class="btn btn-default center-block add" disabled="disabled">
+							<i class="glyphicon glyphicon-chevron-down"></i>
+						</button>
+						<button title="Send to list 1" class="btn btn-default center-block remove" disabled="disabled">
+							<i class="glyphicon glyphicon-chevron-up"></i>
+						</button>
+<!--					</div>-->
+					<div class="col-xs-12">
+						<ul class="list-group destination" id = "des_list"></ul>
+					</div>
+				</div>
+                <button type="button"  name="submit" id="submit" value="Submit">Complete</button>
+						</div>
+			</div>
+      <div id="survival" class="container">
+			<div class="row" id="header">
+				<div class="col-sm-6 col-md-6 col-lg-6">
+					<h4>Survival Graph</h4>
+					<div id="viz">
+						<svg width="800" height="470"></svg>
+					</div>
+              <button type="button" onclick="getInputDataAndDrawKM();">Draw Kaplan Meier</button>
+			  </div>
+				<div class="col-sm-6 col-md-6 col-lg-6" id = "invisible">
+					<div id="inputs-container-container">
+						<div class="input-container">
+                <div class="legend">Time</div>
+                <textarea  rows="10" cols="5" id="timeSel" name="timeSel" ></textarea>
+              </div>
+              <div class="input-container">
+                <div class="legend">Event</div>
+                  <textarea rows="10" cols="5" id="eventSel" name="eventSel" ></textarea>
+              </div>
+              <div class="input-container">
+                <div class="legend">Group</div>
+                  <textarea rows="10" cols="5" id="groupSel" name="groupSel" ></textarea>
+              </div>
+              <div class="input-container">
+                <div class="legend">Show CI</div>
+                <input type="radio" name="ci-type" value="ordinary"checked="">Yes<br>
+                <input type="radio" name="ci-type" value="none">No
+              </div>
+              <div class="input-container">
+                  <div class="legend">CI</div>
+                  <input type="radio" name="ci" value="0.67449">50%<br>
+                  <input type="radio" name="ci" value="1.28155">80%<br>
+                  <input type="radio" name="ci" value="1.64485">90%<br>
+                  <input type="radio" name="ci" value="1.95996" checked="">95%
+              </div><!-- input-container -->
+              <div class="input-container">
+                  <div class="legend"><br></div>
+              </div><!-- input-container -->
+
+          </div><!-- inputs-container-container -->
+				</div>
+			</div>
+		</div>
+		 <div id="viz6">
+		 </div>
+
+
+		</div>
+
+    <script src="js/importCSV.js"></script>
+		<script src="js/survival.js"></script>
+
+
+	</body>
+</html>

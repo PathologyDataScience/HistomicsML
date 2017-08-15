@@ -1,0 +1,36 @@
+.v-center {
+  min-height:200px;
+  display: flex;
+  justify-content:center;
+  flex-flow: column wrap;
+}
+.list-group {
+    border: 1px inset #eee;
+    height: 200px;
+    overflow-y: auto;
+}
+.list-group-item {
+    cursor: pointer;
+}
+
+body {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+table {
+    border-collapse: collapse;
+    border: 2px #000 solid;
+}
+th {
+    border: 1px #F00 solid;
+    text-align: center;
+    font-weight: bold;
+}
+td {
+    border: 1px #00F solid;
+    text-align: center;
+    padding: 5px;
+}
+#invisible {
+     display: none;
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<!--
+	Copyright (c) 2014-2017, Emory University
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without modification, are
+	permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this list of
+	conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice, this list
+ 	of conditions and the following disclaimer in the documentation and/or other materials
+	provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+	EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+	OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+	SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+	TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+	BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+	WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+	DAMAGE.
+
+-->
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>HistomicsML - Interactive machine-learning for histology images - Reports</title>
+
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	</head>
+
+
+	<body>
+
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<div><ul class="nav navbar-nav"><li><a id="index">HistomicsML</a></li><ul></div>
+			</div>
+
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="index_home.html" id='home'>Home</a></li>
+					<li><a href="viewer.html?view" id="viewer">Heatmap</a></li>
+					<li><a href="data.html" id="nav_data">Import</a></li>
+					<li class="active"><a href="#" id='nav_reports'>Reports</a></li>
+					<li><a href="validation.html" id="nav_validation">Validation</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container">
+		    <div class="row">
+		    	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<!--    	<img src="images/segmentation.jpg" class="img-responsive">   -->
+			    	<center><img src="images/banner.png" class="img-responsive"></center>
+ 				</div>
+<!--
+ 				<div class="clearfix">
+ 				<div class="col-xs-9 col-sm-8 col-md-8 col-lg-7">
+ 					<h2>HistomicsML - Interactive machine-learning for histology images</h2>
+				</div>
+				</div>
+-->
+			</div>
+
+			<br />
+
+			<div class="row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h3>Slide class counts</h3>
+				</div>
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h3>Download a training set</h3>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row">
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="count_form" method="POST" action="php/count.php">
+						<div class="form-group">
+							<label for="datasetSel">Dataset</label>
+							<select class="form-control" id="datasetSel" name="dataset">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="trainsetSel">Training Set</label>
+							<select class="form-control" id="trainsetSel" name="trainset">
+							</select>
+						</div>
+
+						<button id="applyCount" type="submit" name="submit-count" class="btn btn-default" value="count" >Count</button>
+					</form>
+				</div>
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="trainingset_form" method="POST" action="php/downloadTrainSet.php">
+						<div class="form-group">
+							<label for="downloadsetSel">Training Set</label>
+							<select class="form-control" id="downloadsetSel" name="downloadset">
+							</select>
+						</div>
+
+						<button type="submit" name="submit-file" class="btn btn-default" value="submitted">Download</button>
+					</form>
+
+				</div>
+			</div>
+
+			<br/>
+
+
+			<div class="row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h3>Map scores</h3>
+				</div>
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<h3>Apply classifier</h3>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="map_form" method="POST" action="php/map.php">
+						<div class="form-group">
+							<label for="datasetMapSel">Dataset</label>
+							<select class="form-control" id="datasetMapSel" name="dataset">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="trainsetMapSel">Training Set</label>
+							<select class="form-control" id="trainsetMapSel" name="trainset">
+							</select>
+						</div>
+
+						<div class="form-group">
+
+							<label for="slideMapSel">Slide</label>
+							<select class="form-control" id="slideMapSel" name="slide">
+							</select>
+							<br/>
+							<div>
+								<span><strong>Slide image size:</strong></span>
+								<span id="imgSize">(100,100)</span>
+								<span><strong>Scale:</strong></span>
+								<span id="imgScale">20x</span>
+							</div>
+						</div>
+
+						<button id="genMap" type="submit" name="submit-genMap" class="btn btn-default" value="classify" >Map</button>
+					</form>
+				</div>
+
+
+				<div class="col-sm-2 col-md-2 col-lg-2">
+				</div>
+
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<form role="form" id="apply_form" method="POST" action="php/apply.php">
+						<div class="form-group">
+							<label for="applyDatasetSel">Dataset</label>
+							<select class="form-control" id="applyDatasetSel" name="dataset">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="applyTrainsetSel">Training Set</label>
+							<select class="form-control" id="applyTrainsetSel" name="trainset">
+							</select>
+						</div>
+
+						<button id="applyClassifier" type="submit" name="submit-classify" class="btn btn-default" value="classify" >Classify</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="js/reports.js"></script>
+	</body>
+</html>
