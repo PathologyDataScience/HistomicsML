@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  hmlweb:
+      image: hmlweb:latest
+      ports:
+          - "80:80"
+          - "20000:20000"
+      links:
+          - hmldb
+
+  hmldb:
+      image: hmldb:latest
+      ports:
+          - "3306:3306"
+      environment:
+          MYSQL_ROOT_PASSWORD: pass
+          MYSQL_DATABASE: nuclei
