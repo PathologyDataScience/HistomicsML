@@ -30,6 +30,10 @@ Tree structure for HistomicsML docker is as below.
 * hmldb:latest: a docker image for HistomcisML database.
 * docker-compose.yml: a file for defining and running docker containers.
 
+
+.. note:: Apache and Mysql servers on HistomicsML docker run on Port 80 and 3306 respectively.
+   If you already use the ports, you should stop the servers.
+
 Now, we describe how to install HistomicsML using docker container.
 
 1. Install docker and docker-compose:
