@@ -10,7 +10,7 @@ and other numerous packages, it may be hard to directly install HistomicsML on y
 Here, we provide a docker container to avoid software conflicts and
 library compatibility issues.
 
-Installing HistomicsTK via Docker
+Installing HistomicsML via Docker
 ---------------------------------
 
 Tree structure for HistomicsML docker is as below.
@@ -65,6 +65,8 @@ Now, we describe how to install HistomicsML using docker container.
 
 .. code-block:: bash
 
+  # Make sure your docker container names are randomly created above.
+  # We will use dockernuclei_db_1 as a container name.
   $ docker exec -t -i dockernuclei_db_1 bash
   root@19cd8ef3e1ec:/# cd /db
   root@19cd8ef3e1ec:/# ./db_run.sh
@@ -78,7 +80,7 @@ Now, we describe how to install HistomicsML using docker container.
           "IPAddress": "",
           "IPAddress": "192.80.0.1",
 
-7. Modify IP address of dbAddress in ``dockernuclei_hmlweb_1`` container:
+7. Modify IP address in ``account.php`` on ``dockernuclei_hmlweb_1`` container:
 
 .. code-block:: bash
 
