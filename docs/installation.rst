@@ -62,34 +62,42 @@ Now, we describe how to install HistomicsML using docker container.
 
   $ docker ps
   CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS              PORTS                                          NAMES
-  7864853c4e38   hmlweb:latest   "/bin/sh -c servi..."   2 minutes ago    Up 2 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:20000->20000/tcp   dockernuclei_web_1
-  19cd8ef3e1ec   hmldb:latest    "docker-entrypoint..."   2 minutes ago    Up 2 minutes        0.0.0.0:3306->3306/tcp                         dockernuclei_db_1
+  7864853c4e38   hmlweb:latest   "/bin/sh -c servi..."   2 minutes ago    Up 2 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:20000->20000/tcp   histomicsml_hmlweb_1
+  19cd8ef3e1ec   hmldb:latest    "docker-entrypoint..."   2 minutes ago    Up 2 minutes        0.0.0.0:3306->3306/tcp                         histomicsml_hmldb_1
 
 5. Import data into database:
 
 .. code-block:: bash
 
   # Make sure your docker container names are randomly created above.
-  # We will use dockernuclei_db_1 as a container name.
-  $ docker exec -t -i dockernuclei_db_1 bash
+  # We will use histomicsml_hmldb_1 as a container name.
+  $ docker exec -t -i histomicsml_hmldb_1 bash
   root@19cd8ef3e1ec:/# cd /db
-  root@19cd8ef3e1ec:/# ./db_run.sh
+  root@19cd8ef3e1ec:/db# ./db_run.sh
+  ---> Starting MySQL server...
+  ---> Sleep start...
+  ---> Sleep end
+  ---> Data importing start ...
+  ---> Data importing end
+  root@19cd8ef3e1ec:/db# exit
 
-6. Check IP address of ``dockernuclei_db_1`` container:
+6. Check IP address of ``histomicsml_hmldb_1`` container:
 
 .. code-block:: bash
 
- $ docker inspect dockernuclei_db_1 | grep IPAddress
+ $ docker inspect histomicsml_hmldb_1 | grep IPAddress
  SecondaryIPAddresses": null,
           "IPAddress": "",
           "IPAddress": "192.80.0.1",
 
-7. Modify IP address in ``account.php`` on ``dockernuclei_hmlweb_1`` container:
+7. Modify IP address in ``account.php`` on ``histomicsml_hmlweb_1`` container:
 
 .. code-block:: bash
 
- $ docker exec -t -i dockernuclei_hmlweb_1 bash
+ $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@19cd8ef3e1ec:/# cd /var/www/html/HistomicsML/db
+ root@19cd8ef3e1ec:/# cd /var/www/html/HistomicsML/db
+ root@19cd8ef3e1ec:/var/www/html/HistomicsML/db# vi account.php
 
  * Open up the account.php in your text editor and modify $dbAddress.
  * $dbAddress = "192.80.0.2"; => $dbAddress = "192.80.0.1"
@@ -98,6 +106,8 @@ Now, we describe how to install HistomicsML using docker container.
 
 .. code-block:: bash
 
- root@19cd8ef3e1ec:/# service al_server start
+ root@19cd8ef3e1ec:/var/www/html/HistomicsML/db# service al_server start
+ Starting active learning server daemon al_server [ OK ]
+ root@19cd8ef3e1ec:/var/www/html/HistomicsML/db# exit
 
 9. Run HistomicsML: http::/localhost/HistomicsML
