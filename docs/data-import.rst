@@ -53,6 +53,9 @@ Now, we start importing the sample data into HistomicsML.
 
 * HistomicsML provides deletion of existing dataset.
 * To delete the current dataset, go to http://localhost/HistomicsML/data.html?application=nuclei and select the current dataset from the dropdown on the top right, and then click Remove button.
+
+.. image:: images/delete.png
+
 * Now, we don't have any dataset on the system.
 
 2. Create a folder and give a permission for importing dataset.
@@ -80,6 +83,11 @@ Now, we start importing the sample data into HistomicsML.
 * Open the web page http://localhost/HistomicsML/data.html?application=nuclei
 * Enter your dataset name. We use ``NewDataSet`` as the dataset name.
 * Select ``NewProjectDirectory`` from the dropdown on Project Directory. This will generate other sample data automatically.
+
+.. image:: images/import.png
+
 * Click Submit button.
 
 Now, you can see the new dataset on the main page, http://localhost/HistomicsML.
+
+.. image:: images/main.png
