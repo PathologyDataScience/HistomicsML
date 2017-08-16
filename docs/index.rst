@@ -9,6 +9,7 @@ large histopathology images.
    :maxdepth: 2
 
    installation
+   data-import
 
 
 Resources
