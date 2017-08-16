@@ -2,7 +2,7 @@ version: '2'
 
 services:
   hmlweb:
-      image: hmlweb:latest
+      image: histomicsml/hmlweb:latest
       ports:
           - "80:80"
           - "20000:20000"
@@ -10,7 +10,7 @@ services:
           - hmldb
 
   hmldb:
-      image: hmldb:latest
+      image: histomicsml/hmldb:latest
       ports:
           - "3306:3306"
       environment:
