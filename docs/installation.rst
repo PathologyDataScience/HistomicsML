@@ -110,5 +110,4 @@ Now, we describe how to install HistomicsML using docker container.
  Starting active learning server daemon al_server [ OK ]
  root@97d439b58033:/var/www/html/HistomicsML/db# exit
 
-9. Run HistomicsML `here
-<http::/localhost/HistomicsML>`_.
+9. Run HistomicsML http://localhost/HistomicsML.
