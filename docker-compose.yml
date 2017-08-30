@@ -2,7 +2,7 @@ version: '2'
 
 services:
   hmlweb:
-      image: histomicsml/hmlweb:latest
+      image: cancerdatascience/hmlweb:0.10
       ports:
           - "80:80"
           - "20000:20000"
@@ -10,7 +10,7 @@ services:
           - hmldb
 
   hmldb:
-      image: histomicsml/hmldb:latest
+      image: cancerdatascience/hmldb:0.10
       ports:
           - "3306:3306"
       environment:
