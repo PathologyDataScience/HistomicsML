@@ -29,7 +29,7 @@ import sys
 import string
 import numpy as np
 
-dims = 64
+dims = 48
 
 
 if len(sys.argv) != 2:
