@@ -1,11 +1,12 @@
 HistomicsML
 ===========
 
-HistomicsML is an open-source interactive machine-learning software for whole-slide images.
+HistomicsML is an interactive machine-learning software specifically designed for whole-slide images.
 
-.. note:: HistomicsML is specifically designed for whole-slide images,
-   and does not support smaller images obtained from a traditional microscope.
-   Please refer to the related projects at the bottom of this page.
+A web based interface that displays the whole-slide images is implemented, and
+a machine learning server is designed for interactive training of classification rules on HistomcisML.
+
+Please refer to the paper, source code, and related projects for more details.
 
 .. toctree::
    :maxdepth: 2
