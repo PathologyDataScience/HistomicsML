@@ -7,7 +7,10 @@ Import Dataset
 HistomicsML provides a tool that enables users to easily import
 their dataset into the file system.
 
-Here, we describe a simple example to import sample data.
+.. note:: We assume that you have your own data performed image segmentation
+   and feature extraction on whole-slide images. Here, we will use our sample data.
+
+Now, we describe a simple example to import sample data.
 
 Importing data using samples
 ----------------------------
