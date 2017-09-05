@@ -78,3 +78,28 @@ When you have selected a number of cells, you can add them to the dataset
 by clicking “Add”. Click “Save” when you are done.
 
 .. image:: images/test-3.png
+
+
+
+
+Report with training dataset
+------------------------------
+
+HistomicsML provides a reporting tool that enables users to download their training results.
+
+Go to http://localhost/HistomicsML/reports.html?application=nuclei
+
+.. image:: images/report-1.png
+
+Slide class counts
+- Use this to compare counts (numbers) of samples that fall into different categories.
+For example, the numbers of positive and negative samples in a slide. (.csv)
+
+Map scores
+- Use this to download score, centroid X, and centroid Y for each sample on a slide. (.csv)
+
+Download a training set
+- Use this to download a training set. (.h5)
+
+Apply classifier
+- Use this to get scores for each prediction using the training set. Predicted scores will be added to the dataset. (.h5)
