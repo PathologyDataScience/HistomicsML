@@ -62,16 +62,16 @@ Now, we describe how to install HistomicsML using docker container.
 
   $ docker ps
   CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS              PORTS                                          NAMES
-  97d439b58033   cancerdatascience/hmlweb:0.10   "/bin/sh -c servi..."   2 minutes ago    Up 2 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:20000->20000/tcp   docker_hmlweb_1
-  c40e9159dfdb   cancerdatascience/hmldb:0.10    "docker-entrypoint..."   2 minutes ago    Up 2 minutes        0.0.0.0:3306->3306/tcp                         docker_hmldb_1
+  97d439b58033   cancerdatascience/hmlweb:0.10   "/bin/sh -c servi..."   2 minutes ago    Up 2 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:20000->20000/tcp   histomicsml_hmlweb_1
+  c40e9159dfdb   cancerdatascience/hmldb:0.10    "docker-entrypoint..."   2 minutes ago    Up 2 minutes        0.0.0.0:3306->3306/tcp                         histomicsml_hmldb_1
 
 5. Import data into database:
 
 .. code-block:: bash
 
   # Make sure your docker container names are randomly created above.
-  # We will use docker_hmldb_1 as a container name.
-  $ docker exec -t -i docker_hmldb_1 bash
+  # We will use histomicsml_hmldb_1 as a container name.
+  $ docker exec -t -i histomicsml_hmldb_1 bash
   root@c40e9159dfdb:/# cd /db
   root@c40e9159dfdb:/db# ./db_run.sh
   ---> Starting MySQL server...
@@ -81,21 +81,20 @@ Now, we describe how to install HistomicsML using docker container.
   ---> Data importing end
   root@c40e9159dfdb:/db# exit
 
-6. Check IP address of ``docker_hmldb_1`` container:
+6. Check IP address of ``histomicsml_hmldb_1`` container:
 
 .. code-block:: bash
 
- $ docker inspect docker_hmldb_1 | grep IPAddress
+ $ docker inspect histomicsml_hmldb_1 | grep IPAddress
  SecondaryIPAddresses": null,
           "IPAddress": "",
           "IPAddress": "192.80.0.1",
 
-7. Modify IP address in ``account.php`` on ``docker_hmlweb_1`` container:
+7. Modify IP address in ``account.php`` on ``histomicsml_hmlweb_1`` container:
 
 .. code-block:: bash
 
- $ docker exec -t -i docker_hmlweb_1 bash
- root@97d439b58033:/# cd /var/www/html/HistomicsML/db
+ $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@97d439b58033:/# cd /var/www/html/HistomicsML/db
  root@97d439b58033:/var/www/html/HistomicsML/db# vi account.php
 
