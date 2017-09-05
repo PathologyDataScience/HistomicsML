@@ -7,6 +7,8 @@ Examples
 HistomicsML provides training and annotation tasks.
 Here, we describe how to train and annotate the dataset through HistomicsML.
 
+.. note:: We assume that you have installed HistomicsML on your system.
+
 Train with sample dataset
 -------------------------
 
