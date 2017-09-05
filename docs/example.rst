@@ -91,15 +91,11 @@ Go to http://localhost/HistomicsML/reports.html?application=nuclei
 
 .. image:: images/report-1.png
 
-Slide class counts
-- Use this to compare counts (numbers) of samples that fall into different categories.
+* Slide class counts: counts (numbers) of samples that fall into different categories.
 For example, the numbers of positive and negative samples in a slide. (.csv)
 
-Map scores
-- Use this to download score, centroid X, and centroid Y for each sample on a slide. (.csv)
+* Map scores: score, centroid X, and centroid Y for each sample on a slide. (.csv)
 
-Download a training set
-- Use this to download a training set. (.h5)
+* Download a training set: a training set. (.h5)
 
-Apply classifier
-- Use this to get scores for each prediction using the training set. Predicted scores will be added to the dataset. (.h5)
+* Apply classifier: scores for each prediction. Predicted scores will be added to the current dataset. (.h5)
