@@ -22,6 +22,10 @@ Enter the names of the positive ``positive`` and negative ``negative`` classes.
 Click ``Begin`` and wait while the dataset loads. Zoom to a region of interest
 and click ``Show Segmentation`` and then ``Select Nuclei``.
 
+.. note:: This example only shows instance-based learning that presents
+   the user with 8 of the least confident objects with and array of thumbnail images that can be labeled.
+   For more information, refer to Results section in the paper.
+
 .. image:: images/train-2.png
 
 Select 4 samples for positive and 4 samples for negative to add them to the
