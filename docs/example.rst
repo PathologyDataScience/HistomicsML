@@ -1,15 +1,12 @@
 .. highlight:: shell
 
 ============
-Examples
+Using HistomicsML
 ============
 
-HistomicsML provides training and annotation tasks.
-Here, we describe how to train and annotate the dataset through HistomicsML.
+This page documents how to use HistomicsML to train classifiers, to create validation datasets, and to export results.
 
-.. note:: We assume that you have installed HistomicsML on your system.
-
-Train with sample dataset
+Training a classifier
 -------------------------
 
 Go to http://localhost/HistomicsML/.
@@ -53,7 +50,7 @@ the training set using Continue a session on the main web page.
 
 
 
-Annotation with sample dataset
+Generating a validation set
 ------------------------------
 
 Go to http://localhost/HistomicsML/validation.html?application=nuclei/.
@@ -80,9 +77,11 @@ by clicking “Add”. Click “Save” when you are done.
 .. image:: images/test-3.png
 
 
+Validating a classifier
+------------------------------
 
 
-Report with training dataset
+Exporting classification results
 ------------------------------
 
 HistomicsML provides a reporting tool that enables users to download their training results.
