@@ -1,7 +1,7 @@
 .. highlight:: shell
 
 ==============
-Formatting your own datasets
+Formatting datasets
 ==============
 
 This section describes how to format your own datasets for importing into HistomicsML. A datasets consists of whole-slide images (.tif), a slide description (.csv), object boundaries (.txt) and histomic features (.h5).
