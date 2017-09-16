@@ -10,8 +10,9 @@ HistomicsML software is designed to run on a server system, and provides a conve
 
    installation
    example
-   data-import
    data-format
+   data-import
+
 
 Resources
 =========
