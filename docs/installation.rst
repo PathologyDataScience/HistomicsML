@@ -4,16 +4,12 @@
 Installation
 ============
 
-To install HistomicsML on your system, we recommend you to install our docker
-container. Because the library dependencies of OpenJPEG, libtiff,
-and other numerous packages, it may be hard to directly install HistomicsML on your system.
-Here, we provide a docker container to avoid software conflicts and
-library compatibility issues.
+HistomicsML can be installed from source, but we recommend using the provided Docker image to simplify the process. This image provides a "software container" that is platform independent, and bundled with pre-built libraries and executables.
 
 Installing HistomicsML via Docker
 ---------------------------------
 
-Tree structure for HistomicsML docker is as below.
+HistomicsML is implemented as a multi-container image that can be run using docker-compose:
 
 .. code-block:: bash
 
@@ -30,18 +26,17 @@ Tree structure for HistomicsML docker is as below.
 * hmldb:0.10: a docker image for HistomcisML database.
 * docker-compose.yml: a file for defining and running docker containers.
 
-
 .. note:: Apache and Mysql servers on HistomicsML docker run on Port 80 and 3306 respectively.
    If you already use the ports, you should stop the servers.
 
-Now, we describe how to install HistomicsML using docker container.
+The HistomicsML docker can be run on any platform with the following steps:
 
-1. Install docker and docker-compose:
+1. Install docker and docker-compose
 
 * For docker install, refer to https://docs.docker.com/engine/installation/
 * For docker-compose install, refer to https://docs.docker.com/compose/install/
 
-2. Clone source codes and Pull HistomicsML docker images:
+2. Clone the HistomicsML source repository and Pull the HistomicsML docker images to your system and start the containers
 
 .. code-block:: bash
 
@@ -49,14 +44,9 @@ Now, we describe how to install HistomicsML using docker container.
   $ cd HistomicsML
   $ docker pull cancerdatascience/hmlweb:0.10
   $ docker pull cancerdatascience/hmldb:0.10
-
-3. Run docker images:
-
-.. code-block:: bash
-
   $ docker-compose up -d
 
-4. Check if two containers are correctly running:
+3. Confirm that the two containers are running
 
 .. code-block:: bash
 
@@ -65,7 +55,7 @@ Now, we describe how to install HistomicsML using docker container.
   97d439b58033   cancerdatascience/hmlweb:0.10   "/bin/sh -c servi..."   2 minutes ago    Up 2 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:20000->20000/tcp   histomicsml_hmlweb_1
   c40e9159dfdb   cancerdatascience/hmldb:0.10    "docker-entrypoint..."   2 minutes ago    Up 2 minutes        0.0.0.0:3306->3306/tcp                         histomicsml_hmldb_1
 
-5. Import data into database:
+4. Import sample data into database (the database docker provides sample image data)
 
 .. code-block:: bash
 
@@ -81,7 +71,7 @@ Now, we describe how to install HistomicsML using docker container.
   ---> Data importing end
   root@c40e9159dfdb:/db# exit
 
-6. Check IP address of ``histomicsml_hmldb_1`` container:
+5. Acquire the IP address of the database container
 
 .. code-block:: bash
 
@@ -90,18 +80,20 @@ Now, we describe how to install HistomicsML using docker container.
           "IPAddress": "",
           "IPAddress": "192.80.0.1",
 
-7. Modify IP address in ``account.php`` on ``histomicsml_hmlweb_1`` container:
+6. Modify IP address in ``account.php`` in the web container
 
+ * Switch to the web docker container
 .. code-block:: bash
-
  $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@97d439b58033:/# cd /var/www/html/HistomicsML/db
  root@97d439b58033:/var/www/html/HistomicsML/db# vi account.php
+ 
+ * Create the account.php file in your text editor directing the database to the address from step 5
+.. code-block:: bash
+ $ cat > account.php
+ $ dbAddress = "192.80.0.2"; => $dbAddress = "192.80.0.1"
 
- * Open up the account.php in your text editor and modify $dbAddress.
- * $dbAddress = "192.80.0.2"; => $dbAddress = "192.80.0.1"
-
-8. Start learning server:
+7. Start the server
 
 .. code-block:: bash
 
@@ -109,4 +101,4 @@ Now, we describe how to install HistomicsML using docker container.
  Starting active learning server daemon al_server [ OK ]
  root@97d439b58033:/var/www/html/HistomicsML/db# exit
 
-9. Run HistomicsML http://localhost/HistomicsML.
+8. Navigate your browser to HistomicsML http://localhost/HistomicsML.
