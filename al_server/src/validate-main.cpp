@@ -287,6 +287,16 @@ int	CalcROC(MData& trainSet, MData& testSet, Classifier *classifier, string test
 			outFile << ((scores[idx] + 1.0f) / 2.0) << ",";
 		}
 		outFile << ((scores[testSet.GetNumObjs() - 1] + 1.0f) / 2.0) << endl;
+
+		outFile << "FP rate: ";
+		outFile << (float)FP / (float)N << endl;
+		outFile << "TP rate: ";
+		outFile << (float)TP / (float)P << endl;
+		outFile << "Precision: ";
+		outFile << (float)TP / (float)(TP + FP) << endl;
+		outFile << "Accuracy: ";
+		outFile << (float)(TP + TN) / (float)(N + P) << endl;
+
 		outFile.close();
 	}
 
