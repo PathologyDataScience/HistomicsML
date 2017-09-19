@@ -68,6 +68,7 @@ $(function() {
 
 	$("#applicationSel").val(application);
 	$("#applicationSelreload").val(application);
+	$("#applicationSelvalidate").val(application);
 
 	// Populate Dataset dropdown
 	//
@@ -79,24 +80,35 @@ $(function() {
 		success: function(data) {
 
 				var	datasetSel = $("#datasetSel"),
-					reloadDatasetSel = $("#reloadDatasetSel");
+					reloadDatasetSel = $("#reloadDatasetSel"),
+					validateDatasetSel = $("#validateDatasetSel");
 				curDataset = data[0];
 
 			for( var item in data ) {
 				datasetSel.append(new Option(data[item][0], data[item][0]));
 				reloadDatasetSel.append(new Option(data[item][0], data[item][0]));
+				validateDatasetSel.append(new Option(data[item][0], data[item][0]));
 			}
 
 			updateTestSets(curDataset[0]);
+			updateSetsForValidate(curDataset[0]);
+			updateTrainingSet();
 		}
 	});
 	$('#reloadDatasetSel').change(updateDataSet);
+	$('#validateDatasetSel').change(updateSet);
 });
 
 
 
 
+function updateSet() {
 
+	var sel = document.getElementById('validateDatasetSel'),
+			  dataset = sel.options[sel.selectedIndex].label;
+
+	updateSetsForValidate(dataset);
+}
 
 function updateDataSet() {
 
@@ -144,7 +156,52 @@ function updateTestSets(dataset) {
 
 }
 
+function updateSetsForValidate(dataset) {
 
+	$.ajax({
+		type: "POST",
+		url: "db/getTestsetForDataset.php",
+		data: { dataset: dataset },
+		dataType: "json",
+		success: function(data) {
+
+			var validateTestSel = $("#validateTestsetSel");
+
+			$("#validateTestsetSel").empty();
+
+			if( validateTestSel.length == 0 ) {
+				validateTestSel.classList.toggle("show");
+			}
+
+			for( var item in data.testSets ) {
+				validateTestSel.append(new Option(data.testSets[item], data.testSets[item]));
+			}
+		},
+		error: function(x,s,e) {
+			console.log("Error:"+e);
+		}
+	});
+}
+
+
+function updateTrainingSet() {
+
+	// Populate training set dropdown
+	//
+	$.ajax({
+		type: "POST",
+		url: "db/getTrainingSets.php",
+		data: "",
+		dataType: "json",
+		success: function(data) {
+			$("#validateTrainsetSel").empty();
+			for( var item in data ) {
+				$('#validateTrainsetSel').append(new Option(data[item][0], data[item][1]));
+			}
+		}
+	});
+
+}
 //
 // Retruns the value of the GET request variable specified by name
 //
