@@ -48,3 +48,11 @@ Clicking a slide in the gallery will load this slide in the heatmap viewer, wher
 .. note:: Object labels can be cycled in the heatmap menu by double-click. Objects that have been annotated and added to the training set will appear with yellow boundaries. An object can be removed from the training set by double-clicking a second time.
 
 When the training is completed, click the ``Finalize`` button in the ``Instance`` interface to save the training set to the database. This training set can be reloaded and resumed from using the *Continue a session* option on the main page.
+
+Reviewing a training set
+------------------------------
+Annotations in a validation set can be reviewed using the review interface.
+
+At the home page under *Continue a session*, select the dataset and training set name and click ``Continue``. Navigate to the ``Review`` interface by clicking the tab at the top menu.
+
+The review interface displays the annotated objects organized by class and slide. Thumbnail images of the objects are organized into columns by class. Clicking a thumbnail will bring that object into the field of view in the slide view. The thumbnails can be dragged/dropped to a different column to change the class label, or placed in the ``Ignore`` column to discard them from the set. Changes are instantly commited to the database (no additional button clicks are needed).
