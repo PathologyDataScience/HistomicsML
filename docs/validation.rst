@@ -6,6 +6,7 @@ Validating a classifier
 
 This page documents how to create validation datasets and how to use validation datasets to measure classifier accuracy.
 
+
 Generating a validation set
 ------------------------------
 
@@ -30,6 +31,15 @@ Choose the object class that you want to annotate using the radio button, and th
     A double-click will remove the object from the validation set.
 
 Clicking ``Add`` will commit these objects to the validation set. The ``Save`` button will save the validation set to the database.
+
+
+Reviewing a validation set
+------------------------------
+Annotations in a validation set can be reviewed using the review interface.
+
+At the ``Validation`` menu under *Continue a validation set*, select the validation dataset and validation set name and click ``Continue``. Click ``Review`` on the left panel to navigate to the review interface.
+
+The review interface displays the annotated objects organized by class and slide. Thumbnail images of the objects are organized into columns by class. Clicking a thumbnail will bring that object into the field of view in the slide view. The thumbnails can be dragged/dropped to a different column to change the class label, or placed in the ``Ignore`` column to discard them from the set. Changes are instantly commited to the database (no additional button clicks are needed).
 
 
 Validating a classifier
