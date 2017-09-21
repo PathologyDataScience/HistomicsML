@@ -11,11 +11,11 @@ Initializing the classifier
 
 Go to http://localhost/HistomicsML/.
 
-Under "Start a session" enter a training set name ``Train-GBM`` and select the pre-loaded dataset ``GBM`` from the drop-down menu. Enter names for your classes - in our case we will use ``mononuclear`` for the positive class and ``other`` for the negative class.
+Under *Start a session* enter a training set name and select the pre-loaded glioblastoma dataset from the drop-down menu. Enter names for your classes - in our case we will use ``mononuclear`` for the positive class and ``other`` for the negative class.
 
 .. image:: images/train-1.png
 
-After clicking ``Begin`` a slide-viewer interface will be loaded to collect annotations in order to build the first iteration of the classifier. A drop-down menu allows you to navigate between slides in the dataset. Zoom to a region of interest, then click ``Show Segmentation`` to display the nuclear boundaries. After clicking ``Select Nuclei``, you will be prompted to select four objects from each class. Clicking an object in the slide viewer will add it to the training set, and a thumbnail image of the object with the class label will appear in the top row.
+After clicking ``Begin`` the ``Prime`` interface will be loaded to collect annotations in order to initialize the classifier. The drop-down can be used to select a slides to display in the slide viewer. Zoom to a region of interest in the slide, then click ``Show Segmentation`` to display object boundaries. After clicking ``Select Nuclei``, you will be prompted to select four objects from each class. Double-clicking an object in the slide viewer will add this object to the training set, and display a thumbnail image of the object above the slide viewer.
 
 .. image:: images/train-2.png
 
