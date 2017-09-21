@@ -47,4 +47,4 @@ Clicking a slide in the gallery will load this slide in the heatmap viewer, wher
 
 .. note:: Object labels can be cycled in the heatmap menu by double-click. Objects that have been annotated and added to the training set will appear with yellow boundaries. An object can be removed from the training set by double-clicking a second time.
 
-When the training is completed, click the ``Finalize`` button in the ``Instance`` interface to save the training set to the database. This training set can be reloaded and resumed from using the Continue a session option on the main page.
+When the training is completed, click the ``Finalize`` button in the ``Instance`` interface to save the training set to the database. This training set can be reloaded and resumed from using the *Continue a session* option on the main page.
