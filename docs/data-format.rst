@@ -60,15 +60,14 @@ Features are stored in an HDF5 binary array format. The HDF5 file contains the f
 
 .. code-block:: bash
 
-  /features - Vector of floats representing the features. Each row contains the features corresponding to a single object. Each feature/column should be normalized by z-score.
+  /features - A D x N array of floats containing the feature values for each object in the dataset (N objects, each with D features). Each feature/row should be normalized by z-score.
   /slides -	Names of the slides/images in the dataset
-  /slideIdx - Index into the slides data for each sample, 0 is the first slide, 1 the second...
-  /x_centroid - Float, x location of the sample in the image.
-  /y_centroid - Float, y location of the sample in the image.
-  /dataIdx - Index of the first object in each slide in 'slidex'. Used to index into the arrays 'features', 'x_centroid', and 'y_centroid'.
-  /mean - Mean value of each feature (provides a record of z-score normalization parameters)
-  /std_dev - Standard deviation of each feature. (provides a record of z-score normalization parameters)
-
+  /slideIdx - N-length array containing the slide index of each object. These indices can be used with the 'slides' variable to determine what slide each object originates from.
+  /x_centroid - N-length array of floats containing the x coordinate of object centroids.
+  /y_centroid - N-length array of floats containing the x coordinate of object centroids.
+  /dataIdx - Array containing the index of the first object of each slide in 'features', 'x_centroid', and 'y_centroid' (this information can also be obtained from 'slideIdx' and will be eliminated in the future).
+  /mean - A D-length array containing the mean of each feature prior to normalization. This provides a record of z-score normalization parameters so that the data can be de-normalized if needed.
+  /std_dev - A D-length array containing the standard deviation of each feature prior to normalization. This provides a record of z-score normalization parameters so that the data can be de-normalized if needed.
 
 The sample file (GBM-features.h5) provided in the database docker container can be queried to examine the structure with the following the command.
 
