@@ -101,5 +101,7 @@ The HistomicsML docker can be run on any platform with the following steps:
  root@97d439b58033:/var/www/html/HistomicsML/db# service al_server start
  Starting active learning server daemon al_server [ OK ]
  root@97d439b58033:/var/www/html/HistomicsML/db# exit
+ 
+.. note:: If the server becomes unresponsive or generates a connection error during use, the al_server will need to be restarted.
 
 8. Navigate your browser to the HistomicsML page http://localhost/HistomicsML.
