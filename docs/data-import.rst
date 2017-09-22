@@ -56,13 +56,10 @@ The following steps, the interface is used to import this dataset into this syst
 
 Now, you can see the new dataset on the main page, http://localhost/HistomicsML.
 
-.. image:: images/main.png
-
+.. image:: images/import-complete.png
 
 The import interface can also be used to delete an existing dataset from the system
 
 * To delete the current dataset, go to http://localhost/HistomicsML/data.html?application=nuclei and select the current dataset from the dropdown on the top right, and then click Remove button.
-
-.. image:: images/delete.png
 
 See the data formats section for detailed information on HistomicsML data formats.
