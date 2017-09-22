@@ -28,7 +28,7 @@
 //
 	require '../db/logging.php';
 
-	$trainSet = '../trainingsets/'.$_POST['validateTrainSet'];
+	$trainSet = '../trainingsets/'.$_POST['validateTrainSet'].'.h5';
 	$testSet = '../trainingsets/'.$_POST['validateTestSet'].'.h5';
 
 	// Extract just the file name of the training set

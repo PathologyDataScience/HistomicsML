@@ -167,17 +167,22 @@
 						<input type="hidden" class="form-control" id="applicationSelvalidate"
 								name="applicationvalidate" readonly="readonly">
 						<div class="form-group">
-							<label for="validateDatasetSel">Dataset</label>
-							<select class="form-control" id="validateDatasetSel" name="validateDataset">
+							<label for="validateTrainDatasetSel">Training dataset</label>
+							<select class="form-control" id="validateTrainDatasetSel" name="validateTrainDataset">
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="validateTrainsetSel">Training Set</label>
+							<label for="validateTrainsetSel">Classifier name</label>
 							<select class="form-control" id="validateTrainsetSel" name="validateTrainSet">
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="validateTestsetSel">Test Set</label>
+							<label for="validateDatasetSel">Validation dataset</label>
+							<select class="form-control" id="validateDatasetSel" name="validateDataset">
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="validateTestsetSel">Validation set name</label>
 							<select class="form-control" id="validateTestsetSel" name="validateTestSet">
 							</select>
 						</div>
@@ -193,7 +198,7 @@
 				<div class="col-sm-4 col-md-4 col-lg-4">
 				</div>
 
-			</div>			
+			</div>
 		</div>
 
 		<div class="modal fade" id="progDiag" tabindex="-1" role="dialog"
