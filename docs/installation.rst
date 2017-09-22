@@ -84,7 +84,9 @@ The HistomicsML docker can be run on any platform with the following steps:
 6. Modify IP address in ``account.php`` in the web container
 
  * Switch to the web docker container and modify the accounts.php file to point to the IP from step 5
+
 .. code-block:: bash
+
  $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@97d439b58033:/# cd /var/www/html/HistomicsML/db
  root@97d439b58033:/var/www/html/HistomicsML/db# vi account.php
