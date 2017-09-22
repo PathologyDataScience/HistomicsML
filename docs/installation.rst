@@ -72,7 +72,7 @@ The HistomicsML docker can be run on any platform with the following steps:
   ---> Data importing end
   root@c40e9159dfdb:/db# exit
 
-5. Acquire the IP address of the database container
+5. Check the IP address of the database container
 
 .. code-block:: bash
 
@@ -83,16 +83,14 @@ The HistomicsML docker can be run on any platform with the following steps:
 
 6. Modify IP address in ``account.php`` in the web container
 
- * Switch to the web docker container
+ * Switch to the web docker container and modify the accounts.php file to point to the IP from step 5
 .. code-block:: bash
  $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@97d439b58033:/# cd /var/www/html/HistomicsML/db
  root@97d439b58033:/var/www/html/HistomicsML/db# vi account.php
+ vi accounts.php
  
- * Create the account.php file in your text editor directing the database to the address from step 5
-.. code-block:: bash
- $ cat > account.php
- $ dbAddress = "192.80.0.2"; => $dbAddress = "192.80.0.1"
+ * change "$dbAddress = "192.80.0.2" to "$dbAddress = "192.80.0.1"
 
 7. Start the server
 
