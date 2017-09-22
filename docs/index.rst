@@ -20,5 +20,4 @@ Resources
 
 * **Project source**: HistomicsML (https://github.com/CancerDataScience/HistomicsML.git).
 
-* **Related projects**: HistomicsTK (https://github.com/DigitalSlideArchive/HistomicsTK) and
-HistXtract (https://github.com/CancerDataScience/HistXtract).
+* **Related projects**: HistomicsTK (https://github.com/DigitalSlideArchive/HistomicsTK) and HistXtract (https://github.com/CancerDataScience/HistXtract).
