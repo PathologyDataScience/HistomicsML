@@ -28,13 +28,13 @@
 //
 	require '../db/logging.php';
 
-	$trainSet = '../trainingsets/'.$_POST['trainset'];
-	$dataSet = '../datasets/'.$_POST['dataset'];
-	$slide = $_POST['slide'];
+	$trainSet = '../trainingsets/'.$_POST['trainsetMap'].'.h5';
+	$dataSet = '../datasets/'.$_POST['datasetMap'];
+	$slide = $_POST['slideMap'];
 
 
 	// Extract just the file name of the training set
-	$parts = explode("/",$_POST['trainset']);
+	$parts = explode("/",$_POST['trainsetMap']);
 	$ele = count($parts);
 	if( $ele > 1 ) {
 		$trainName = $parts[$ele - 1];
@@ -43,7 +43,7 @@
 	}
 
 	// Do the same for the dataset
-	$parts = explode("/",$_POST['dataset']);
+	$parts = explode("/",$_POST['datasetMap']);
 	$ele = count($parts);
 	if( $ele > 1 ) {
 		$dataName = $parts[$ele - 1];
