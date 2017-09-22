@@ -4,7 +4,7 @@
 Validating a classifier
 ============
 
-This page documents how to create validation datasets and how to use validation datasets to measure classifier accuracy.
+This validation interface can be used to create validation datasets and to measure classifier accuracy.
 
 
 Generating a validation set
