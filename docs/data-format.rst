@@ -1,44 +1,32 @@
 .. highlight:: shell
 
 ==============
-Data format
+Formatting datasets
 ==============
 
-A dataset of HistomicsML consists of the whole-slide images, slide information,
-object boundaries and extracted features.
-For example, our sample dataset consists of the whole-slide image (.tif),
-slide information (.csv), cell boundaries (.txt), and the features (.h5).
-
-.. note:: Scripts specific to the dataset need to be created
-   since the extracted features and boundaries may not be provided in the same format.
-
-
+This section describes how to format your own datasets for importing into HistomicsML. A datasets consists of whole-slide images (.tif), a slide description (.csv), object boundaries (.txt) and histomic features (.h5).
 
 Whole-slide images
 ------------------
 
-Whole-slide images can be handled on the IIPImage server (http://iipimage.sourceforge.net/documentation/server/).
-IIPImage server requires the whole-slide images to be formatted in a multi-resolution 'pyramid'.
-We have used Vips (http://www.vips.ecs.soton.ac.uk/index.php?title=VIPS)
-to do the conversion.
+Whole-slide images need to be converted to a pyramidal .tif format that is compatible with the IIPImage server (http://iipimage.sourceforge.net/documentation/server/). We have used Vips (http://www.vips.ecs.soton.ac.uk/index.php?title=VIPS)
+to perform this conversion for our datasets.
 
 .. note:: The path to the image needs to be saved in the database.
    HistomicsML uses the database to get the path when forming a request for the IIPIMage server.
 
 
-
-Slide information
+Slide description
 ------------------------------------
-A table (.csv) will be needed for each slide information.
-The table format is as below:
+A table (.csv) needs to be created to capture the dimensions, magnification, and location of the files for each slide image:
 
 .. code-block:: bash
 
   <slide name>,<width in pixels>,<height in pixels>,<path to the pyramid on IIPServer>,<scale>
 
-where scale = 1 for 20x and 2 for 40x.
+where scale = 1 for 20x and scale = 2 for 40x.
 
-For example, our sample file (GBM-pyramids.csv) is shown as below:
+For the sample data provided in the database container, our slide description file (GBM-pyramids.csv) has the following contents:
 
 .. code-block:: bash
 
@@ -46,18 +34,18 @@ For example, our sample file (GBM-pyramids.csv) is shown as below:
 
 
 
-Boundaries
+Object boundaries
 ----------
-The boundary format is as below:
+Boundary information is formatted as a tab-delimited text file where each line describes the centroids and boundary coordinates for one object:
 
 .. code-block:: bash
 
   <slide name> \t <centroid x coordinate> \t <centroid y coordinate> \t <boundary points>
 
 where \t is a tab character and <boundary points> are formatted as:
-x1,y1 x2,y2 x3,y3 ... xN,yN (Spaces between coordinates, no spaces within coordinates)
+x1,y1 x2,y2 x3,y3 ... xN,yN (with spaces between coordinate pairs)
 
-For example, our sample file (GBM-boundaries.txt) is shown as below:
+One line from the sample data boundaries file (GBM-boundaries.txt):
 
 .. code-block:: bash
 
@@ -65,24 +53,23 @@ For example, our sample file (GBM-boundaries.txt) is shown as below:
 
 
 
-Features
+Histomic features
 --------
 
-We have used HDF5 format to store the features. The format is as below:
+Features are stored in an HDF5 binary array format. The HDF5 file contains the following variables:
 
 .. code-block:: bash
 
-  /dataIdx - Index into the features data of the first sample from the corresponding slide.
-  /features - Vector of floats representing the features. Each row is a sample, samples from the same slide/image are contiguous. Data is normalized using z-score.
-  /mean -  Mean value of each feature. (Used for z-score normalization)
-  /std_dev - Standard deviation of each feature. (Used for z-score normalization)
-  /slides	-	Names of the slides/images in the dataset
-  /slideIdx - Index into the slides data for each sample, 0 is the first slide, 1 the sceond...
-  /x_centroid - Float, x location of the sample in the image.
-  /y_centroid - Float, y location of the sample in the image.
+  /features - A D x N array of floats containing the feature values for each object in the dataset (N objects, each with D features). Each feature/row should be normalized by z-score.
+  /slides -	Names of the slides/images in the dataset
+  /slideIdx - N-length array containing the slide index of each object. These indices can be used with the 'slides' variable to determine what slide each object originates from.
+  /x_centroid - N-length array of floats containing the x coordinate of object centroids.
+  /y_centroid - N-length array of floats containing the x coordinate of object centroids.
+  /dataIdx - Array containing the index of the first object of each slide in 'features', 'x_centroid', and 'y_centroid' (this information can also be obtained from 'slideIdx' and will be eliminated in the future).
+  /mean - A D-length array containing the mean of each feature prior to normalization. This provides a record of z-score normalization parameters so that the data can be de-normalized if needed.
+  /std_dev - A D-length array containing the standard deviation of each feature prior to normalization. This provides a record of z-score normalization parameters so that the data can be de-normalized if needed.
 
-You can see our sample file (GBM-features.h5) provided in the docker container,
-following the command.
+The sample file (GBM-features.h5) provided in the database docker container can be queried to examine the structure with the following the command.
 
 .. code-block:: python
 
