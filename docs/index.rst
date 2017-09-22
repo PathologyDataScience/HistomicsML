@@ -9,6 +9,7 @@ HistomicsML is an interactive machine-learning system for analyzing whole-slide 
    installation
    example
    validation
+   reports
    data-import
    data-format
 
