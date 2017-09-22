@@ -15,7 +15,7 @@ Direct your browser to http://localhost/HistomicsML/validation.html?application=
 Under *Start a validation set* enter a test set name and choose the dataset you want to select validation examples from. Enter the names
 of your positive and negative classes.
 
-.. image:: images/test-1.png
+.. image:: images/validation-start.png
 
 .. note:: A strict validation procedure should perform training and validation on separate images. A slide collection can be artificially split
 prior to import to produce separate training and validation datasets.
@@ -24,7 +24,7 @@ The validation interface is similar to the ``Prime`` interface, providing a slid
 Object boundaryies can be displayed by selecting ``Show Segmentation``. Clicking ``Select Nuclei`` will activate the cursor to begin annotating objects.
 Choose the object class that you want to annotate using the radio button, and then select objects by double-clicking within their boundaries in the slide viewer.
 
-.. image:: images/test-2.png
+.. image:: images/validation-select.png
 
 .. note:: Thumbnail images of validation set objects are displayed at the top of the screen. 
     The class label of these objects can be toggled with a single-click. 
@@ -41,6 +41,7 @@ At the ``Validation`` menu under *Continue a validation set*, select the validat
 
 The review interface displays the annotated objects organized by class and slide. Thumbnail images of the objects are organized into columns by class. Clicking a thumbnail will bring that object into the field of view in the slide view. The thumbnails can be dragged/dropped to a different column to change the class label, or placed in the ``Ignore`` column to discard them from the set. Changes are instantly commited to the database (no additional button clicks are needed).
 
+.. image:: images/validation-review.png
 
 Validating a classifier
 ------------------------------
