@@ -137,7 +137,7 @@ function updateSlideSize() {
 		dataType: "json",
 		success: function(data) {
 
-			document.getElementById('imgSize').innerHTML = data[0]+" x "+data[1];
+			document.getElementById('imgSize').innerHTML = data[0]+" x "+data[1] +" pixels ";
 
 			if( data[2] == 1 ) {
 				document.getElementById('imgScale').innerHTML = "20x";
