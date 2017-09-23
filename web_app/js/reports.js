@@ -35,8 +35,9 @@ $(function() {
 
 	application = $_GET("application");
 
-	var	datasetSel = $("#datasetSel"), trainsetSel = $("#trainsetSel"),
-		downloadsetSel = $("#downloadsetSel");
+	var	datasetslideSummary = $("#datasetSel"), trainsetSel = $("#trainsetSel"),
+		downloadsetSel = $("#downloadsetSel"), datasetpredictDataset = $("#applyDatasetSel"),
+		datasetpredictSlide = $('#datasetMapSel');
 
 	document.getElementById("index").setAttribute("href","index.html");
 	document.getElementById("home").setAttribute("href","index_home.html?application="+application);
@@ -54,12 +55,18 @@ $(function() {
 		dataType: "json",
 		success: function(data) {
 
+			var curDataset = data[0];
+
 			for( var item in data ) {
-				datasetSel.append(new Option(data[item][0], data[item][1]));
-				$('#datasetMapSel').append(new Option(data[item][0], data[item][1]));
-				$('#applyDatasetSel').append(new Option(data[item][0], data[item][1]));
+				datasetslideSummary.append(new Option(data[item][0], data[item][1]));
+				datasetpredictSlide.append(new Option(data[item][0], data[item][1]));
+				datasetpredictDataset.append(new Option(data[item][0], data[item][1]));
 			}
+			updateTrainSetsforSlideSummary(curDataset[0]);
+			updateTrainSets(curDataset[0]);
 			updateSlideList();
+			updateTrainSetsforPredictDataset(curDataset[0]);
+
 		}
 	});
 
@@ -70,12 +77,8 @@ $(function() {
 		data: "",
 		dataType: "json",
 		success: function(data) {
-
 			for( var item in data ) {
-				trainsetSel.append(new Option(data[item][0], data[item][1]));
 				downloadsetSel.append(new Option(data[item][0], data[item][1]));
-				$('#trainsetMapSel').append(new Option(data[item][0], data[item][1]));
-				$('#applyTrainsetSel').append(new Option(data[item][0], data[item][1]));
 			}
 		}
 	});
@@ -83,10 +86,54 @@ $(function() {
 	// Need to montior changes for the map score select controls. Slide image
 	//	size is dependant on these.
 	//
-	$("#datasetMapSel").change(updateDataset);
+	datasetslideSummary.change(updateslideSummary);
+	datasetpredictSlide.change(updatepredictSlide);
 	$("#slideMapSel").change(updateSlideSize);
+	datasetpredictDataset.change(updatepredictDataset);
 
 });
+
+
+function updateslideSummary() {
+	var sel = document.getElementById('datasetSel'),
+			  dataset = sel.options[sel.selectedIndex].label;
+	updateTrainSetsforSlideSummary(dataset);
+}
+
+function updatepredictSlide() {
+	var sel = document.getElementById('datasetMapSel'),
+			  dataset = sel.options[sel.selectedIndex].label;
+	updateTrainSets(dataset);
+	updateSlideList();
+}
+
+function updatepredictDataset() {
+	var sel = document.getElementById('applyDatasetSel'),
+			  dataset = sel.options[sel.selectedIndex].label;
+	updateTrainSetsforPredictDataset(dataset);
+}
+
+
+
+function updateTrainSetsforSlideSummary(dataSet) {
+
+	$.ajax({
+		type: "POST",
+		url: "db/getTrainsetForDataset.php",
+		data: { dataset: dataSet },
+		dataType: "json",
+		success: function(data) {
+
+			var	reloadTrainSel = $("#trainsetSel");
+			$("#trainsetSel").empty();
+
+			for( var item in data.trainingSets ) {
+				reloadTrainSel.append(new Option(data.trainingSets[item], data.trainingSets[item]));
+			}
+		}
+	});
+
+}
 
 
 
@@ -118,11 +165,48 @@ function updateSlideList() {
 
 
 
+function updateTrainSets(dataSet) {
 
+	$.ajax({
+		type: "POST",
+		url: "db/getTrainsetForDataset.php",
+		data: { dataset: dataSet },
+		dataType: "json",
+		success: function(data) {
 
-function updateDataset() {
-	updateSlideList();
+			var	reloadTrainSel = $("#trainsetMapSel");
+			$("#trainsetMapSel").empty();
+
+			for( var item in data.trainingSets ) {
+				reloadTrainSel.append(new Option(data.trainingSets[item], data.trainingSets[item]));
+			}
+		}
+	});
+
 }
+
+
+
+function updateTrainSetsforPredictDataset(dataSet) {
+
+	$.ajax({
+		type: "POST",
+		url: "db/getTrainsetForDataset.php",
+		data: { dataset: dataSet },
+		dataType: "json",
+		success: function(data) {
+
+			var	reloadTrainSel = $("#applyTrainsetSel");
+			$("#applyTrainsetSel").empty();
+
+			for( var item in data.trainingSets ) {
+				reloadTrainSel.append(new Option(data.trainingSets[item], data.trainingSets[item]));
+			}
+		}
+	});
+
+}
+
 
 
 
