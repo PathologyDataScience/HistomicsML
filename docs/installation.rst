@@ -89,9 +89,8 @@ The HistomicsML docker can be run on any platform with the following steps:
 
  $ docker exec -t -i histomicsml_hmlweb_1 bash
  root@97d439b58033:/# cd /var/www/html/HistomicsML/db
- root@97d439b58033:/var/www/html/HistomicsML/db# vi account.php
- vi accounts.php
-
+ root@97d439b58033:/var/www/html/HistomicsML/db# vi accounts.php
+ 
 * change "$dbAddress = "192.80.0.2" to "$dbAddress = "192.80.0.1"
 
 7. Start the server
