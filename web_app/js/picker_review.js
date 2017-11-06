@@ -61,6 +61,7 @@ var sortable_group = "";
 var sortable_group_list = [];
 var application = "";
 
+var reloaded = false;
 
 //
 //	Review
@@ -83,9 +84,12 @@ $(function() {
 		success: function(data) {
 
 			uid = data['uid'];
+			testset = data['className'];
 			IIPServer = data['IIPServer'];
 			posClass = data['posClass'];
 			negClass = data['negClass'];
+			curDataset = data['dataset'];
+			reloaded = data['reloaded'];
 
 			if( uid === null ) {
 				window.alert("No session active");
@@ -314,6 +318,7 @@ function create_mouse_event(sample, slide_num, sample_index){
 			updateLabels();
 			doreviewSel();
 			slidesInfo();
+			$('#saveBtn').removeAttr('disabled');
 
 		}, false);
 
@@ -746,6 +751,7 @@ function thumbDoubleClick(index) {
 	updateLabels();
 	doreviewSel();
 	slidesInfo(sampleDataJson['picker_review']);
+	$('#saveBtn').removeAttr('disabled');
 }
 
 
@@ -855,6 +861,49 @@ function onImageViewChanged(event) {
 }
 
 
+
+function saveTrainingSet() {
+
+	if( reloaded ) {
+
+		$.ajax({
+			type: "POST",
+			url: "php/finishReloadedPicker.php",
+			data: "",
+			dataType: "json",
+			success: function(data) {
+
+				if( data['status'] === "PASS" ) {
+					console.log("Pos: "+data['posClass']+", Neg: "+data['negClass']);
+					window.alert("Test set saved to: " + data['filename']);
+					window.location = "validation.html?application="+application;
+				} else {
+					window.alert("Unable to save test set");
+				}
+			},
+		});
+
+	} else {
+
+		$.ajax({
+			type: "POST",
+			url: "php/finishPicker.php",
+			data: "",
+			dataType: "json",
+			success: function(data) {
+
+				if( data['status'] === "PASS" ) {
+					console.log("Pos: "+data['posClass']+", Neg: "+data['negClass']);
+					window.alert("Test set saved to: " + data['filename']);
+					window.location = "validation.html?application="+application;
+				} else {
+					window.alert("Unable to save test set");
+				}
+			},
+		});
+
+	}
+}
 
 //
 // Retruns the value of the GET request variable specified by name
