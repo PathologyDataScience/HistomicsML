@@ -56,6 +56,8 @@ var reloaded = false;
 var application = "";
 var scale = 0.5;
 
+var superpixel_size = 0;
+
 //
 //	Initialization
 //
@@ -81,6 +83,10 @@ $(function() {
 	imgHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 	viewerHook = viewer.addViewerInputHook({ hooks: [
 					{tracker: 'viewer', handler: 'clickHandler', hookHandler: onMouseClick}
+					{tracker: 'viewer', handler: 'dragHandler', hookHandler: onViewerDrag},
+					{tracker: 'viewer', handler: 'dragEndHandler', hookHandler: onViewerDragEnd},
+					{tracker: 'viewer', handler: 'releaseHandler', hookHandler: onViewerLeave},
+					{tracker: 'viewer', handler: 'exitHandler', hookHandler: onViewerExit}
 			]});
 
 	annoGrpTransformFunc = ko.computed(function() {
@@ -177,6 +183,21 @@ $(function() {
 				document.getElementById('radioPos').innerHTML = posClass;
 
 				defaultClass = -1;
+			}
+		}
+	});
+
+	$.ajax({
+		type: "POST",
+		url: "db/getdatasets.php",
+		data: { application: application },
+		dataType: "json",
+		success: function(data) {
+
+			for( var item in data ) {
+				if (curDataset == data[item][0]) {
+					superpixel_size = data[item][2];
+				}
 			}
 		}
 	});
@@ -580,8 +601,14 @@ function nucleiSelect() {
 						var scale_size = 50.0;
 
 						if (application == "region"){
-							scale_cent = 64;
-							scale_size = 128;
+							if (superpixel_size == "16") {
+								scale_cent = 36;
+								scale_size = 64.0;
+							}
+							else {
+								scale_cent = 64;
+								scale_size = 128.0;
+							}
 						}
 						centX = (sample['centX'] - (scale_cent * sample['scale'])) / sample['maxX'];
 						centY = (sample['centY'] - (scale_cent * sample['scale'])) / sample['maxY'];

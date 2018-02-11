@@ -60,6 +60,8 @@ var cur_slide_num = -1;
 var sortable_group = "";
 var sortable_group_list = [];
 
+var superpixel_size = 0;
+
 //
 //	Review
 //
@@ -76,6 +78,7 @@ $(function() {
 	document.getElementById("nav_review").setAttribute("href","review.html?application="+application);
 	document.getElementById("viewer").setAttribute("href","viewer.html?application="+application);
 	document.getElementById("nav_heatmaps").setAttribute("href","heatmaps.html?application="+application);
+	document.getElementById("nav_survival").setAttribute("href","survival.html?application="+application);
 
 	// get slide host info
 	//
@@ -89,6 +92,7 @@ $(function() {
 			IIPServer = data['IIPServer'];
 			posClass = data['posClass'];
 			negClass = data['negClass'];
+			curDataset = data['dataset'];
 
 			if( uid === null ) {
 				window.alert("No session active");
@@ -102,6 +106,21 @@ $(function() {
 		}
 	});
 
+
+	$.ajax({
+		type: "POST",
+		url: "db/getdatasets.php",
+		data: { application: application },
+		dataType: "json",
+		success: function(data) {
+
+			for( var item in data ) {
+				if (curDataset == data[item][0]) {
+					superpixel_size = data[item][2];
+				}
+			}
+		}
+	});
 
 // Create the slide zoomer, update slide count etc...
 // We will load the tile pyramid after the slide list is loaded
@@ -604,8 +623,14 @@ function displayOneslide(sampleArray, slide_num){
 		var scale_size = 50.0;
 
 		if (application == "region"){
-			scale_cent = 64.0;
-			scale_size = 128.0;
+			if (superpixel_size == "16") {
+				scale_cent = 36;
+				scale_size = 64.0;
+			}
+			else {
+				scale_cent = 64;
+				scale_size = 128.0;
+			}
 		}
 
 		centX = (sampleArray[sample]['centX'] - (scale_cent * scale)) / sampleArray[sample]['maxX'];

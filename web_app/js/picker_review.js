@@ -27,6 +27,7 @@
 
 var annoGrpTransformFunc;
 var uid = "";
+var testset = "";
 var classifier = "";
 var negClass = "";
 var posClass = "";
@@ -62,6 +63,8 @@ var sortable_group_list = [];
 var application = "";
 
 var reloaded = false;
+
+var superpixel_size = 0;
 
 //
 //	Review
@@ -103,6 +106,20 @@ $(function() {
 		}
 	});
 
+	$.ajax({
+		type: "POST",
+		url: "db/getdatasets.php",
+		data: { application: application },
+		dataType: "json",
+		success: function(data) {
+
+			for( var item in data ) {
+				if (curDataset == data[item][0]) {
+					superpixel_size = data[item][2];
+				}
+			}
+		}
+	});
 
 // Create the slide zoomer, update slide count etc...
 // We will load the tile pyramid after the slide list is loaded
@@ -215,6 +232,7 @@ viewer.addHandler('close', function(event) {
 	} else {
 		genReview();
 	}
+
 });
 
 // Do review
@@ -607,8 +625,14 @@ function displayOneslide(sampleArray, slide_num){
 		var scale_size = 50.0;
 
 		if (application == "region"){
-			scale_cent = 64.0;
-			scale_size = 128.0;
+			if (superpixel_size == "16") {
+				scale_cent = 36;
+				scale_size = 64.0;
+			}
+			else {
+				scale_cent = 64;
+				scale_size = 128.0;
+			}
 		}
 		centX = (sampleArray[sample]['centX'] - (scale_cent * scale)) / sampleArray[sample]['maxX'];
 		centY = (sampleArray[sample]['centY'] - (scale_cent * scale)) / sampleArray[sample]['maxY'];
@@ -904,6 +928,9 @@ function saveTrainingSet() {
 
 	}
 }
+
+
+
 
 //
 // Retruns the value of the GET request variable specified by name
