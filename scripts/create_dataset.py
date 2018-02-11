@@ -30,14 +30,15 @@ import MySQLdb as mysql
 import getpass as pw
 
 
-if len(sys.argv) != 5:
-	print "Usage: ", sys.argv[0], "<user name> <dataset to create> <features file> <slide list>"
+if len(sys.argv) != 6:
+	print "Usage: ", sys.argv[0], "<user name> <dataset to create> <features file> <slide list> <superpixel size>"
 	exit(1)
 
 dataset = sys.argv[2]
 userId = sys.argv[1]
 slideListFile = sys.argv[4]
 featuresFile = sys.argv[3]
+superpixelSize = sys.argv[5]
 
 
 
@@ -49,11 +50,11 @@ cursor = db.cursor()
 #	Create dataset
 #
 try:
-	cursor.execute("INSERT into datasets (name, features_file) VALUES(%s, %s)", (dataset, featuresFile))
+	cursor.execute("INSERT into datasets (name, features_file, superpixel_size) VALUES(%s, %s, %s)", (dataset, featuresFile, int(superpixelSize)))
 	db.commit()
 
 except mysql.Error, e:
-	
+
 	if db:
 		db.rollback()
 
@@ -90,5 +91,3 @@ for slide in slideList:
 
 
 print "Created dataset", dataset, "with", len(slideList), "slides"
- 
-
