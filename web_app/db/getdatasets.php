@@ -40,15 +40,15 @@
 	$sql = "";
 
 	if( $application == "nuclei" ) {
-		$sql = "SELECT name,features_file from datasets
+		$sql = "SELECT name,features_file,superpixel_size from datasets
 			 where not (features_file like '%spfeatures%' OR features_file like '%pofeatures%') order by name";
 	}
 	elseif( $application == "region" ) {
-		$sql = "SELECT name,features_file from datasets
+		$sql = "SELECT name,features_file,superpixel_size from datasets
 			where features_file like '%spfeatures%' order by name";
 	 }
 	 elseif( $application == "cell" ) {
-		 $sql = "SELECT name,features_file from datasets
+		 $sql = "SELECT name,features_file,superpixel_size from datasets
 	 		where features_file like '%pofeatures%' order by name";
 	 }else{
 		 log_error("application selection failed:  ");
@@ -62,6 +62,7 @@
 
 	 			$obj[] = $array[0];
 	 			$obj[] = $array[1];
+				$obj[] = $array[2];
 
 	 			$jsonData[] = $obj;
 	 		}
