@@ -1031,12 +1031,12 @@ int main(int argc, char *argv[])
 		} else if( command.compare("apply") == 0 ) {
 			result = ApplyClassifier(trainSet, testSet, classifier, testFile, outFileName);
 		} else if( command.compare("mask") == 0 ) {
-			// result = GenerateMaskRegions(trainSet, testSet, classifier, outFileName);
-			result = GenerateLabelRegions(trainSet, testSet, classifier, outFileName);
+			result = GenerateMaskRegions(trainSet, testSet, classifier, outFileName);
+			// result = GenerateLabelRegions(trainSet, testSet, classifier, outFileName);
 		} else if( command.compare("maskregion") == 0 ) {
-			// result = GenerateMaskRegion(trainSet, testSet, classifier, testFile, slide, startx, starty, width, height, outFileName);
+			result = GenerateMaskRegion(trainSet, testSet, classifier, testFile, slide, startx, starty, width, height, outFileName);
 			// result = GenerateLabelRegion(trainSet, testSet, classifier, testFile, slide, startx, starty, width, height, outFileName);
-			result = GenerateLabelRegion(testSet, testFile, slide, startx, starty, width, height, outFileName);
+			// result = GenerateLabelRegion(testSet, testFile, slide, startx, starty, width, height, outFileName);
 		}
 	}
 
